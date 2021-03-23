@@ -1,4 +1,4 @@
-package viewmodels
+package com.example.formulaez
 
 class FormulaListFragment {
 }
