@@ -1,4 +1,6 @@
 package com.example.formulaez
 
-class FormulaDescriptionFragment {
+import androidx.fragment.app.Fragment
+
+class FormulaDescriptionFragment : Fragment() {
 }
