@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import viewmodels.FormulaViewModel
 
 class FormulaDescriptionFragment : Fragment() {
@@ -25,6 +26,8 @@ class FormulaDescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        formulaViewModel.getClickedFormula().observe(viewLifecycleOwner,{formula_description.text = formulaViewModel.getClickedFormula(). ,currentPosition = })
+        formulaViewModel.getClickedFormula().observe(viewLifecycleOwner, Observer{(int,formula) ->
+            formula_description.text = formula.description
+            currentPosition = int })
     }
 }

@@ -34,9 +34,9 @@ class FormulaListFragment : ListFragment() {
         // When in two-pane layout, set the listview to highlight the selected list item
         // (We do this during onStart because at the point the listview is available.)
         // This is for when it is in big mode so needs to be implemented later
-        //if (parentFragmentManager.findFragmentById(R.id.article_fragment) != null) {
-        //    listView.choiceMode = ListView.CHOICE_MODE_SINGLE
-        //}
+        if (parentFragmentManager.findFragmentById(R.id.description_fragment) != null) {
+           listView.choiceMode = ListView.CHOICE_MODE_SINGLE
+        }
     }
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
@@ -44,7 +44,7 @@ class FormulaListFragment : ListFragment() {
         //mCallback?.onArticleSelected(position)
 
         // Set the item as checked to be highlighted when in two-pane layout
-        formulaViewModel.getClickedFormula(position)
+        formulaViewModel.setClickedFormula(position)
         listView.setItemChecked(position, true)
         //listView.setItemChecked(position, true)
     }
