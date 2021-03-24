@@ -1,15 +1,19 @@
 package models
 
+import android.util.Log
+
 
 class FormulaManager {
 
     private lateinit var formulas: ArrayList<Formula>
 
     init {
+        Log.d("LOGGER", "init : FormulaManager")
         makeFormulaList()
     }
 
     private fun makeFormulaList(){
+        formulas = ArrayList()
         formulas.add(
                 Formula(
                         "Lorem ipsum", "Fysik", "5*5*5", "666", "LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG BESKRIVELSE"

@@ -1,5 +1,6 @@
 package viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,7 @@ class FormulaViewModel: ViewModel() {
 
 
     init {
+        Log.d("LOGGER", "init : FormulaViewModel")
         initFormulas()
         initFormulaHeadlines()
     }

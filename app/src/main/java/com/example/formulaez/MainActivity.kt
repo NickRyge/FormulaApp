@@ -2,6 +2,7 @@ package com.example.formulaez
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("LOGGER", "her : MainActivity")
         val formulaViewModel: FormulaViewModel by viewModels()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,7 +29,6 @@ class MainActivity : AppCompatActivity() {
                 return
             }
 
-            // Create an instance of ExampleFragment
             val firstFragment = FormulaListFragment()
 
             // In case this activity was started with special instructions from an Intent,

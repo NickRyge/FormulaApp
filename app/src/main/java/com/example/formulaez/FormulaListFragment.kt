@@ -19,14 +19,9 @@ class FormulaListFragment : ListFragment() {
         val layout = android.R.layout.simple_list_item_activated_1
 
         // Create an array adapter for the list view, using the Ipsum headlines array
-        listAdapter = activity?.let {
-            ArrayAdapter(
-                it,
-                layout,
-                formulaViewModel.getFormulaHeadlines()
-            )
+        listAdapter = ArrayAdapter(requireActivity(), layout, formulaViewModel.getFormulaHeadlines())
         }
-    }
+
 
     override fun onStart() {
         super.onStart()
