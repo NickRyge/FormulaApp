@@ -7,7 +7,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import viewmodels.FormulaViewModel
-import androidx.fragment.app.activityViewModels
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("LOGGER", "her : MainActivity")
         val formulaViewModel: FormulaViewModel by viewModels()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.two_sided_layout)
         // Check whether the activity is using the layout version with
         // the fragment_container FrameLayout. If so, we must add the first fragment
         if (findViewById<View?>(R.id.fragment_container) != null) {
