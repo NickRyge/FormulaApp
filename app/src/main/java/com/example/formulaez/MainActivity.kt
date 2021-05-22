@@ -8,6 +8,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import viewmodels.FormulaViewModel
 import androidx.fragment.app.activityViewModels
+import models.FormulaDatabase
+import models.FormulaManager
+import models.FormulaRepository
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +18,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LOGGER", "her : MainActivity")
+        val db = FormulaDatabase.getFormulaDatabase(this)
+        val repository = FormulaRepository(db!!.formulaDao())
         val formulaViewModel: FormulaViewModel by viewModels()
+        formulaViewModel.repo = repository
+        formulaViewModel.initialize()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // Check whether the activity is using the layout version with

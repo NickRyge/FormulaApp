@@ -3,32 +3,33 @@ package models
 import android.util.Log
 
 
-class FormulaManager {
+class FormulaManager(repo: FormulaRepository) {
 
-    private lateinit var formulas: ArrayList<Formula>
+    private lateinit var formulas: List<Formula>
+    var repository = repo
 
     init {
         Log.d("LOGGER", "init : FormulaManager")
+
+        makeFormulaDatabase()
         makeFormulaList()
     }
 
+    private fun makeFormulaDatabase(){
+       for (i in 1..10){
+           var formula = Formula()
+           //formula.uid = i
+           formula.name = "Name"
+           formula.category = "Category"
+           formula.description = "Description"
+           formula.mathJaxForm = "Mathjax"
+           formula.form = "Form"
+           repository.insert(formula)
+        }
+    }
+
     private fun makeFormulaList(){
-        formulas = ArrayList()
-        formulas.add(
-                Formula(
-                        "Lorem ipsum", "Fysik", "5*5*5", "666", "LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG BESKRIVELSE"
-                )
-        )
-        formulas.add(
-                Formula(
-                        "Lorem ipsum", "Fysik", "5*5*5", "667", "LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG BESKRIVELSE"
-                )
-        )
-        formulas.add(
-                Formula(
-                        "Lorem ipsum", "Fysik", "5*5*5", "668", "LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG BESKRIVELSE"
-                )
-        )
+        formulas = repository.formulas
     }
     fun getFormulaHeadlines(): Array<String?> {
         val formulaHeadlines = arrayOfNulls<String>(formulas.size)
@@ -38,7 +39,7 @@ class FormulaManager {
         return formulaHeadlines
     }
 
-    fun getFormulas(): ArrayList<Formula> {
+    fun getFormulas(): List<Formula> {
         return formulas
     }
 }
