@@ -6,21 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import models.Formula
 import models.FormulaManager
+import models.FormulaRepository
 
 class FormulaViewModel: ViewModel() {
 
-    private lateinit var formulas: ArrayList<Formula>
+    private lateinit var formulas: List<Formula>
     private lateinit var formulaHeadlines: Array<String?>
+    lateinit var repo : FormulaRepository
     private var clickedFormula = MutableLiveData<Pair<Int, Formula>>()
-    private val formulaManager = FormulaManager()
+    private lateinit var formulaManager : FormulaManager
 
 
-    init {
-        Log.d("LOGGER", "init : FormulaViewModel")
+
+    fun initialize() {
+        formulaManager = FormulaManager(repo)
         initFormulas()
         initFormulaHeadlines()
     }
-
     private fun initFormulaHeadlines() {
         formulaHeadlines = formulaManager.getFormulaHeadlines()
     }
@@ -33,7 +35,7 @@ class FormulaViewModel: ViewModel() {
         return formulaHeadlines
     }
 
-    fun getFormula():ArrayList<Formula>{
+    fun getFormula():List<Formula>{
         return formulas
     }
 
@@ -44,5 +46,7 @@ class FormulaViewModel: ViewModel() {
     fun getClickedFormula(): LiveData<Pair<Int, Formula>>{
         return clickedFormula
     }
+
+
 
 }
