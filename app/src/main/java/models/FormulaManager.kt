@@ -11,7 +11,7 @@ class FormulaManager(repo: FormulaRepository) {
     init {
         Log.d("LOGGER", "init : FormulaManager")
 
-        makeFormulaDatabase()
+        if(repository.formulas.isEmpty()){makeFormulaDatabase()}
         makeFormulaList()
     }
 
@@ -19,7 +19,7 @@ class FormulaManager(repo: FormulaRepository) {
        for (i in 1..10){
            var formula = Formula()
            //formula.uid = i
-           formula.name = "Name"
+           formula.name = "Name" + i
            formula.category = "Category"
            formula.description = "Description"
            formula.mathJaxForm = "Mathjax"
@@ -29,6 +29,7 @@ class FormulaManager(repo: FormulaRepository) {
     }
 
     private fun makeFormulaList(){
+
         formulas = repository.formulas
     }
     fun getFormulaHeadlines(): Array<String?> {
