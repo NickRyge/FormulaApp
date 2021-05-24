@@ -20,22 +20,29 @@ class FormulaViewModel: ViewModel() {
 
     fun initialize() {
         formulaManager = FormulaManager(repo)
-        initFormulas()
         initFormulaHeadlines()
-    }
-    private fun initFormulaHeadlines() {
-        formulaHeadlines = formulaManager.getFormulaHeadlines()
+        initFormulas()
+
     }
 
+    //Runs the SQL query. (Its just get * from formulas)
     private fun initFormulas() {
         formulas = formulaManager.getFormulas()
     }
 
-    fun getFormulaHeadlines():Array<String?>{
-        return formulaHeadlines
+    private fun initFormulaHeadlines() {
+        //formulaHeadlines = formulaManager.getFormulaHeadlines()
+    }
+
+    fun getFormulaHeadlines(query: String):Array<String?>{
+        return formulaManager.getFormulaHeadlines(query)
     }
 
     fun getFormula():List<Formula>{
+        return formulas
+    }
+
+    fun getFormula(query: String):List<Formula>{
         return formulas
     }
 
@@ -46,7 +53,5 @@ class FormulaViewModel: ViewModel() {
     fun getClickedFormula(): LiveData<Pair<Int, Formula>>{
         return clickedFormula
     }
-
-
 
 }
