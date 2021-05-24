@@ -5,16 +5,17 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/description_fragment"
-        android:name="com.example.formulaez.FormulaDescriptionFragment"
-        android:layout_width="0dp"
+        android:id="@+id/list_fragment"
+        android:name="com.example.formulaez.FormulaListFragment"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/list_fragment"
-        android:name="com.example.formulaez.FormulaListFragment"
-        android:layout_width="0dp"
+        android:id="@+id/description_fragment"
+        android:name="com.example.formulaez.FormulaDescriptionFragment"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2" />
+
 </LinearLayout>
