@@ -37,7 +37,11 @@ class FormulaManager(repo: FormulaRepository) {
 
         formulas = repository.formulas
     }
-    fun getFormulaHeadlines(): Array<String?> {
+    fun getFormulaHeadlines(query : String): Array<String?> {
+
+        repository.updateFormula(query)
+        formulas = repository.formulas
+
         val formulaHeadlines = arrayOfNulls<String>(formulas.size)
 
         formulas.forEachIndexed{i, formula -> formulaHeadlines[i] = "Formula: " + formula.name + "\n" + "Category: " +formula.category + "\n" + formula.mathJaxForm}

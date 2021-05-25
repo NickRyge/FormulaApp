@@ -9,7 +9,11 @@
         android:name="com.example.formulaez.FormulaListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.fragment.app.FragmentContainerView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/description_fragment"

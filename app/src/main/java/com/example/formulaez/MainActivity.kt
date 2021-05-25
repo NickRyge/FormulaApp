@@ -2,8 +2,11 @@ package com.example.formulaez
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import viewmodels.FormulaViewModel
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         formulaViewModel.initialize()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var firstFragment = FormulaListFragment()
         // Check whether the activity is using the layout version with
         // the fragment_container FrameLayout. If so, we must add the first fragment
         if (findViewById<View?>(R.id.fragment_container) != null) {
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
 
-            val firstFragment = FormulaListFragment()
+
 
             // In case this activity was started with special instructions from an Intent,
             // pass the Intent's extras to the fragment as arguments
@@ -45,6 +49,8 @@ class MainActivity : AppCompatActivity() {
             // Add the fragment to the 'fragment_container' FrameLayout
             supportFragmentManager.beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit()
+
+
         }
 
         formulaViewModel.getClickedFormula().observe(this, Observer{
@@ -64,5 +70,22 @@ class MainActivity : AppCompatActivity() {
                 transaction.commit()
             }
         })
+
+        var edit = findViewById<EditText>(R.id.input)
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                return
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                firstFragment.updateList(s.toString())
+
+            }
+        })
+
     }
 }
