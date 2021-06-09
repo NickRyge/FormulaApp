@@ -38,10 +38,12 @@ class FormulaViewModel: ViewModel() {
         return formulaManager.getFormulaHeadlines(query)
     }
 
+    //This is never used, we use getFormulaHeadlines
     fun getFormula():List<Formula>{
         return formulas
     }
 
+    //This is never used, we use getFormulaHeadlines
     fun getFormula(query: String):List<Formula>{
         return formulas
     }
