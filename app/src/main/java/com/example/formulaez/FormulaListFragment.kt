@@ -23,7 +23,7 @@ class FormulaListFragment : ListFragment() {
 
     override fun onStart() {
         super.onStart()
-
+        //hello
 
         if (parentFragmentManager.findFragmentById(R.id.description_fragment) != null) {
            listView.choiceMode = ListView.CHOICE_MODE_SINGLE

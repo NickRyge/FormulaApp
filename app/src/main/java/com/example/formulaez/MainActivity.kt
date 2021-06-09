@@ -8,16 +8,17 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.fragment.app.ListFragment
 import androidx.lifecycle.Observer
 import viewmodels.FormulaViewModel
 import androidx.fragment.app.activityViewModels
+import models.Formula
 import models.FormulaDatabase
 import models.FormulaManager
 import models.FormulaRepository
 
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LOGGER", "her : MainActivity")
@@ -28,10 +29,20 @@ class MainActivity : AppCompatActivity() {
         formulaViewModel.initialize()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var firstFragment = FormulaListFragment()
+
         // Check whether the activity is using the layout version with
-        // the fragment_container FrameLayout. If so, we must add the first fragment
+        // the fragment_container FrameLayout. If so, we must add the first fragment,
+
+        // In case this activity was started with special instructions from an Intent,
+        // pass the Intent's extras to the fragment as arguments
+        var firstFragment: FormulaListFragment ?= null
+
+
         if (findViewById<View?>(R.id.fragment_container) != null) {
+
+            firstFragment = FormulaListFragment()
+
+            firstFragment.arguments = intent.extras
 
             // However, if we're being restored from a previous state,
             // then we don't need to do anything and should return or else
@@ -40,16 +51,9 @@ class MainActivity : AppCompatActivity() {
                 return
             }
 
-
-
-            // In case this activity was started with special instructions from an Intent,
-            // pass the Intent's extras to the fragment as arguments
-            firstFragment.arguments = intent.extras
-
             // Add the fragment to the 'fragment_container' FrameLayout
             supportFragmentManager.beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit()
-
 
         }
 
@@ -82,10 +86,17 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                firstFragment.updateList(s.toString())
+                   if (firstFragment != null) {
 
+                       firstFragment.updateList(s.toString())
+
+                   } else {
+
+                       val temp = supportFragmentManager.findFragmentById(R.id.list_fragment) as FormulaListFragment?
+                       temp!!.updateList(s.toString())
+
+                   }
             }
         })
-
     }
 }
